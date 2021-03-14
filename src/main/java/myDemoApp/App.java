@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.catalog.SystemSuffix;
 
 import spark.ModelAndView;
 import spark.template.mustache.MustacheTemplateEngine;
