@@ -49,7 +49,7 @@ public class App {
             new MustacheTemplateEngine()
         );
 
-        post("/compute", (req, res) -> {
+        post("/", (req, res) -> {
           //System.out.println(req.queryParams("input1"));
           //System.out.println(req.queryParams("input2"));
 
