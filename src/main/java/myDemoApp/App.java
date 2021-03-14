@@ -23,10 +23,7 @@ public class App {
     }
 
     public static void main(String[] args) {  
-        
-        Logger logger = LogManager.getLogger(App.class.getName());
-        int port = Integer.parseInt(System.getenv("PORT"));
-        port(port);
+       
 
 
         get("/", (req, res) -> "Hello, World");
@@ -60,13 +57,9 @@ public class App {
           String input2 = req.queryParams("input2").replaceAll("\\s","");                    
           int input2AsInt = Integer.parseInt(input2);
 
-          String input3 = req.queryParams("input3").replaceAll("\\s","");
-          int input3AsInt = Integer.parseInt(input3);
 
-          String input4 = req.queryParams("input4").replaceAll("\\s","");
-          int input4AsInt = Integer.parseInt(input4);
 
-          boolean result = App.search(inputList, input2AsInt,input3AsInt,input4AsInt);
+          boolean result = App.search(inputList, input2AsInt,3,2);
 
           Map<String, Boolean> map = new HashMap<String, Boolean>();
           map.put("result", result);
