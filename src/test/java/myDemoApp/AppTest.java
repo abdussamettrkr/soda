@@ -10,21 +10,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
-    }
+
     @Test void testFound(){
         ArrayList<Integer>  arr  = new ArrayList(Arrays.asList(1,2,3,4));
-        assertTrue(App.search(arr, 4));
+        assertTrue(App.search(arr, 4,2,1));
     }
-    @Test void testNotFound(){
+    @Test void testN1NotFound(){
         ArrayList<Integer>  arr  = new ArrayList(Arrays.asList(1,2,3,4,7,73,1));
-        assertFalse(App.search(arr, 23));
+        assertFalse(App.search(arr, 0,2,3));
     }
 
+    // test n2*n3 
+    @Test void testN2MN3NotFound(){
+        ArrayList<Integer>  arr  = new ArrayList(Arrays.asList(1,2,3,4,7,73,1));
+        assertFalse(App.search(arr, 4,2,4));
+    }
+    
+    
     @Test void testEmptyAray(){
         ArrayList<Integer>  arr  = new ArrayList<>();
-        assertFalse(App.search(arr, 23));
+        assertFalse(App.search(arr, 23,1,2));
     }
 }
