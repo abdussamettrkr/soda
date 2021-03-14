@@ -29,18 +29,12 @@ public class App {
     }
 
     public static void main(String[] args) {        
-        
-        Logger logger = LogManager.getLogger(App.class);
-        logger.error("Hello ");
-
-        int port = Integer.parseInt(System.getenv("PORT"));
-
-        port(port);
-   
 
 
+        get("/", (req, res) -> "Hello, World");
 
-        get("/",
+
+        get("/compute",
             (rq, rs) -> {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("result", "not computed yet!");
@@ -49,7 +43,7 @@ public class App {
             new MustacheTemplateEngine()
         );
 
-        post("/", (req, res) -> {
+        post("/compute", (req, res) -> {
           //System.out.println(req.queryParams("input1"));
           //System.out.println(req.queryParams("input2"));
 
@@ -64,24 +58,22 @@ public class App {
           }
           sc1.close();
           System.out.println(inputList);
+          
+          String input2 = req.queryParams("input2").replaceAll("\\s","");                    
+          int input2AsInt = Integer.parseInt(input2);
 
+          String input3 = req.queryParams("input3").replaceAll("\\s","");
+          int input3AsInt = Integer.parseInt(input3);
 
-          String input2 = req.queryParams("input2").replaceAll("\\s","");
-          java.util.Scanner sc2 = new java.util.Scanner(input1);
-          sc1.useDelimiter("[;\r\n]+");
-          java.util.ArrayList<Integer> inputList2 = new java.util.ArrayList<>();
-          while (sc2.hasNext())
-          {
-            int value = Integer.parseInt(sc2.next().replaceAll("\\s",""));
-            inputList2.add(value);
-          }
+          String input4 = req.queryParams("input4").replaceAll("\\s","");
+          int input4AsInt = Integer.parseInt(input4);
 
-
-          boolean result = App.search(inputList, inputList2.get(0),inputList2.get(1),inputList2.get(2));
+          boolean result = App.search(inputList, input2AsInt,input3AsInt,input4AsInt);
 
           Map<String, Boolean> map = new HashMap<String, Boolean>();
           map.put("result", result);
           return new ModelAndView(map, "compute.mustache");
+
         }, new MustacheTemplateEngine());
 
 
