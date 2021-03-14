@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.catalog.SystemSuffix;
+
 import spark.ModelAndView;
 import spark.template.mustache.MustacheTemplateEngine;
 
@@ -32,11 +34,14 @@ public class App {
         Logger logger = LogManager.getLogger(App.class);
         logger.error("Hello ");
 
+        int port = Integer.parseInt(System.getenv("PORT"));
+
+        port(port);
    
 
-        get("/", (req, res) -> "Hello, Abdus");
 
-        get("/compute",
+
+        get("/",
             (rq, rs) -> {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("result", "not computed yet!");
