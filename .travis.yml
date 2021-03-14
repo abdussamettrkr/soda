@@ -1,0 +1,5 @@
+language: java
+before_insall:
+ - chmod +x gradlew
+jdk:
+ - oraclejdk15
